@@ -17,7 +17,8 @@ class Agent:
         self.epsilon = 0 # randomness
         self.gamma = 0 # discoutn rate
         self.memory = deque(maxlen=MAX_MEMORY) #popleft()
-        # TODO model, trainer
+        self.model = Linear_QNet(11, 256, 3)
+        self.trainer = QTrainer(self.model, lr=LR, gamma=self.gamma)
     
     def get_state(self, game):
         head = game.snake[0]
